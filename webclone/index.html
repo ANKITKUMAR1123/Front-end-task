@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <!-- <link rel="stylesheet" integrity="sha384-zCUUq3LKcrMvUv/Npvbs8Yl3n7QO7z9HifH0Zpr4PuEAr5sxS1OnJhIGwPgQSs6Z" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome@6.1.1/css/all.min.css"> -->
+
+
+  <style>
+    #navbar {
+      transition: background-color 0.3s ease;
+      /* box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); */
+    }
+
+    /* .scrollbar-hide{
+      display: none;
+    } */
+    /* .scrollbar-hide{
+      -ms-overflow-style: none; 
+    scrollbar-width: none; 
+    } */
+    .scroll-container {
+      height: 11rem;
+      /* Adjust height as needed */
+      overflow: auto;
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      scrollbar-width: none;
+      /* Firefox */
+    }
+
+    .scroll-container::-webkit-scrollbar {
+      display: none;
+      /* Chrome, Safari, and Opera */
+    }
+
+    .icon {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 0.5rem;
+      fill: none;
+      stroke: #22c55e;
+      /* Green color */
+    }
+
+    /* body{
+      background-color: white;
+      color:black;
+    }
+    .dark-mode{
+      background-color: black;
+      color:white;
+    } */
+
+    .display-none {
+      display: none;
+    }
+
+    .dark {
+      background-color: #121212;
+      color: white;
+      
+    }
+
+    /* .light-mode {
+      background-color: #FFFFFF;
+      
+    } */
+
+    .dark-mode {
+      background-color: #121212;
+      /* Dark mode background color */
+    }
+
+    /* Ensure the dark-mode class is only active when the dark theme is applied */
+    .dark .dark-mode {
+      background-color: #121212;
+      /* Dark mode background color */
+    }
+
+    .dark .light-mode {
+      background-color: transparent;
+      /* Or any fallback color if needed */
+    }
+    
+  </style>
+</head>
+
+<body class="bg-slate-100 dark:bg-slate-900">
+  <!-- navbar -->
+  <nav id="navbar" class="p-3 flex justify-between items-center fixed w-full ">
+    <a href="#" class="flex gap-2 items-center">
+      <img class="object-cover max-w-12 max-h-12" src="white-logo.png" alt="logo" />
+    </a>
+   <div class="w-full flex justify-end">
+    <div id="nav-menu" class="hidden lg:flex gap-8 justify-center items-center ">
+      <a href="#" class="font-medium">HOME</a>
+      <a href="#" class="font-medium">ABOUT US</a>
+      <a href="#" class="font-medium">SERVICES</a>
+      <a href="#" class="font-medium">BLOG</a>
+      <a href="#" class="font-medium">CONTACT US</a>
+      <div class="font-medium w-12 h-12  rounded-full flex justify-center items-center "
+        style="background-color: #C22CC4;">
+        <i class="fa-solid fa-phone text-white"></i>
+      </div>
+      <div class="font-medium w-40 h-12   rounded-full flex justify-center items-center " style="background: rgb(97,66,188);
+      background: linear-gradient(180deg, rgba(97,66,188,1) 0%, rgba(54,122,225,1) 99%);">
+        <p class="text-white">Request A Quote</p>
+      </div>
+
+      <div class="p-2 rounded-full border-solid border-black border-2">
+        <a href="#" class="font-medium">
+          <i class="sun fa-solid fa-sun fa-xl" style="color: #FFD43B;"></i>
+          <i class="moon fa-solid fa-moon text-2xl display-none"></i>
+        </a>
+      </div>
+
+    </div>
+   </div>
+
+    <div class="flex gap-2">
+      <button class="p-2 lg:hidden" onclick="handleMenu()">
+        <i class="fa-solid fa-bars text-gray-600"></i>
+
+
+      </button>
+      <div class="p-2 rounded-full border-solid border-black border-2 lg:hidden">
+        <a href="#" class="font-medium">
+          <i class="sun fa-solid fa-sun fa-xl" style="color: #FFD43B;"></i>
+          <i class="moon fa-solid fa-moon  display-none"></i>
+        </a>
+      </div>
+      <div class="font-medium w-12 h-12  rounded-full flex justify-center items-center lg:hidden"
+        style="background-color: #C22CC4;">
+        <i class="fa-solid fa-phone text-white"></i>
+      </div>
+
+    </div>
+
+
+    <div id="nav-dialog" class="theme-bg w-1/2 fixed z-10 lg:hidden inset-0 bg-black p-3 text-white">
+      <div id="nav-bar" class="flex justify-between">
+        <a href="#" class="flex gap-2 items-center">
+          <img class="object-cover max-w-12 max-h-12" src="white-logo.png" alt="logo" />
+        </a>
+        <div class="flex  gap-2">
+          <button class="p-2 lg:hidden" onclick="handleMenu()">
+            <i class="fa-solid fa-xmark text-white"></i>
+  
+          </button>
+
+          <!-- <div class="p-2 rounded-full border-solid border-black border-2">
+            <a href="#" class="font-medium">
+              <i class="sun fa-solid fa-sun fa-xl" style="color: #FFD43B;"></i>
+              <i class="moon fa-solid fa-moon text-2xl display-none"></i>
+            </a>
+          </div>
+
+          <div class="font-medium w-12 h-12  rounded-full flex justify-center items-center lg:hidden"
+          style="background-color: #C22CC4;">
+          <i class="fa-solid fa-phone text-white"></i>
+        </div> -->
+  
+        </div>
+      </div>
+
+      <div class="mt-6 items-start flex flex-col justify-start">
+        <a href="#" class="font-medium m-3 p-3 block">Home</a>
+        <a href="#" class="font-medium m-3 p-3 block">About us</a>
+        <a href="#" class="font-medium m-3 p-3 block">Services</a>
+        <a href="#" class="font-medium m-3 p-3 block">Blog</a>
+        <a href="#" class="font-medium m-3 p-3 block">Contact us</a>
+      </div>
+    </div>
+  </nav>
+  <!-- navbar end-->
+
+  <!-- home container start -->
+  <div class="theme-bg w-full h-ful relative home-background">
+    <img src="banner-shap-2.png" alt="" class="absolute inset-0 w-full h-full object-cover opacity-25">
+    <div class="w-full flex flex-col  justify-center items-center lg:flex-row">
+      <div class="w-full m-9 flex flex-col justify-center lg:w-1/2 ">
+        <div class="w-full flex flex-col items-center gap-9 mt-8 p-8">
+          <h1 class="font-bold text-5xl text-center lg:text-left">
+            Creative Web Development Company
+          </h1>
+          <p class="w-full text-xl leading-9 text-center lg:text-left">
+            Digi India Solutions is a leading digital marketing company
+            specializing in offering a broad range of digital marketing services
+            to assist businesses of all sizes in achieving their online
+            marketing objectives.
+          </p>
+          <div class="lg:w-full">
+            <button class="w-44 h-12 bg-pink-400 rounded-full">Know More</button>
+          </div>
+        </div>
+      </div>
+      <div class="w-full lg:w-1/2">
+        <img src="hero-image.png" alt="Hero" class="mt-20 h-1/4 p-4" />
+      </div>
+    </div>
+  </div>
+  <!-- home container end -->
+
+  <!-- About us container -->
+  <div class="w-full h-full relative">
+    <img src="dot_bg.png" alt="" class="absolute inset-0 w-full h-full object-cover bg-img">
+    <div class="w-full  flex flex-col bg-gray justify-center items-center relative z-40 h-full lg:flex-row">
+      <div class="m-9 flex flex-col justify-center lg:justify-start lg:w-1/2 mt-12">
+        <div class="flex flex-col justify-center items-center gap-9 lg:items-start">
+          <h1 class="font-bold text-lg text-red-400">ABOUT US</h1>
+          <p class="w-full text-4xl leading-10 font-medium text-center lg:text-left">
+            Why The Digi India Solutions
+            <span class="text-red-600">Ranked Top</span> Among The Leading Web &
+            App Development Companies
+          </p>
+          <p class="font-medium text-lg ">
+            In the ever-evolving realm of web and app development, Digi India
+            Solutions has emerged as a trailblazer, consistently securing its
+            position at the forefront of innovation and client satisfaction. Our
+            success is not incidental but a result of our commitment to
+            excellence and a client-centric approach. Discover why we are the
+            go-to choice for those seeking unparalleled digital solutions.
+          </p>
+        </div>
+  
+        <div class="flex flex-col justify-center items-center gap-9 mt-5">
+          <div class="flex gap-3">
+            <div class="w-28 h-14 border-solid bg-gray-300 rounded-lg p-2">
+              <img src="computers.png" alt="" class="w-full" />
+            </div>
+            <div>
+              <p class="font-bold text-lg">Streamlined Project Management</p>
+              <p>
+                Our success lies in meticulous project management. We navigate
+                complexities with streamlined processes, ensuring efficiency,
+                transparency, and on-time delivery.
+              </p>
+            </div>
+          </div>
+  
+          <div class="flex gap-3">
+            <div class="w-28 h-14 border-solid bg-gray-300 rounded-lg p-2 ">
+              <img src="worker.png" alt="" class="w-full hover:animate-bounce" />
+            </div>
+            <div>
+              <p class="font-bold text-lg">A Dedicated Team of Experts</p>
+              <p>
+                At the core of our excellence is a dedicated team of experts.
+                Passionate and proficient, they bring unparalleled skills and
+                innovation to every project, ensuring top-notch solutions.
+              </p>
+            </div>
+          </div>
+  
+          <div class="flex gap-3">
+            <div class="w-28 h-14 border-solid bg-gray-300 rounded-lg p-2">
+              <img src="deal.png" alt="" class="w-full" />
+            </div>
+            <div>
+              <p class="font-bold text-lg">Completion of Project in Given Time</p>
+              <p>
+                Meeting deadlines is not just a commitment; it's our promise.
+                With a relentless focus on timelines, we ensure projects are
+                completed within the stipulated time, offering clients
+                reliability and peace of mind.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="w-full lg:w-1/2 mt-12">
+        <div class="rounded-lg p-5 ">
+          <img src="about-company.jpg" alt="Digital Marketing" class="rounded-lg" />
+        </div>
+  
+        <div class="mt-3 flex justify-center flex-col items-center gap-5">
+          <p class="text-center w-full text-4xl leading-10 font-bold">
+            Let's Start a <span class="text-red-700">New Project</span> Together
+          </p>
+          <p class="w-full text-xl leading-9 text-center">
+            Our team of experts is eager to collaborate with you, crafting
+            digital solutions that help you achieve your unique goals.
+          </p>
+          <button class=" w-52 h-12 rounded-full border-solid border-2 border-green-300">
+            Request A Quote
+          </button>
+        </div>
+        <div class="mt-2 p-5 flex justify-center">
+          <img src="about-company1.png" alt="" class="h-64" />
+        </div>
+      </div>
+    </div>
+  </div>  
+  <!-- About container end -->
+
+  <!-- Services container start -->
+  <div class="w-full h-full relative service-background">
+    <img src="dot-shape.png" alt="" class="absolute inset-0 w-full h-full object-cover">
+    <div class="w-full flex justify-center flex-col items-center z-40 h-full">
+      <div class="flex flex-col items-center gap-4 mt-12">
+        <p class="font-medium text-lg text-red-700">SERVICES WE’RE PROVIDED</p>
+        <p class="font-bold text-5xl text-center">Our Top Services</p>
+      </div>
+  
+      <div class="w-full mt-9 grid grid-cols-1 gap-5 p-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
+        <div class="p-5 flex flex-col gap-4 border-solid border-2 shadow-xl lg:justify-between">
+          <div class="flex justify-center">
+            <img src="branding (1).png" alt="" class="w-24" />
+          </div>
+          <div class="flex justify-center">
+            <p class="font-bold text-xl">Logo & Branding Service</p>
+          </div>
+          <div class="flex justify-center items-center text-center">
+            <p class="font-medium text-lg leading-7">
+              We create unforgettable brand identities that resonate with your
+              target audience and establish a strong visual foundation for your
+              business.
+            </p>
+          </div>
+          <div class="flex justify-center mt-4">
+            <button class="bg-gray-500 w-40 p-3 text-white rounded-lg">Learn More</button>
+          </div>
+        </div>
+  
+        <div class="p-5 flex flex-col gap-4 border-solid border-2 shadow-xl  lg:justify-between">
+          <div class="flex justify-center">
+            <img src="branding (1).png" alt="" class="w-24" />
+          </div>
+          <div class="flex justify-center">
+            <p class="font-bold text-xl text-center">Website Design & Development</p>
+          </div>
+          <div class="flex justify-center items-center text-center">
+            <p class="font-medium text-lg leading-9">
+              We craft high-performance websites that are visually stunning, user-friendly, and optimized for conversion.
+            </p>
+          </div>
+          <div class="flex justify-center mt-4">
+            <button class="bg-gray-500 w-40 p-3 text-white rounded-lg">Learn More</button>
+          </div>
+        </div>
+  
+        <div class="p-5 flex flex-col gap-4 border-solid border-2 shadow-xl lg:justify-between">
+          <div class="flex justify-center">
+            <img src="branding (1).png" alt="" class="w-24" />
+          </div>
+          <div class="flex justify-center">
+            <p class="font-bold text-xl text-center">Search Engine Optimization</p>
+          </div>
+          <div class="flex justify-center items-center text-center">
+            <p class="font-medium text-lg leading-9">
+              We employ a strategic SEO approach to increase your website’s visibility and drive more traffic to your
+              site.
+            </p>
+          </div>
+          <div class="flex justify-center mt-4">
+            <button class="bg-gray-500 w-40 p-3 text-white rounded-lg">Learn More</button>
+          </div>
+        </div>
+  
+        <div class="p-5 flex flex-col gap-4 border-solid border-2 shadow-xl lg:justify-between">
+          <div class="flex justify-center">
+            <img src="branding (1).png" alt="" class="w-24" />
+          </div>
+          <div class="flex justify-center">
+            <p class="font-bold text-xl text-center">Social Media Promotion</p>
+          </div>
+          <div class="flex justify-center items-center text-center">
+            <p class="font-medium text-lg leading-9">
+              We create engaging content, manage your online presence, and run targeted campaigns to promote your brand.
+            </p>
+          </div>
+          <div class="flex justify-center mt-4">
+            <button class="bg-gray-500 w-40 p-3 text-white rounded-lg">Learn More</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services container end -->
+
+  <!-- Hire section start -->
+  <div class="w-full flex flex-col items-center mt-8 md:flex-row md:justify-center lg:justify-center ">
+    <div class="text-center md:text-center lg:text-center">
+      <p class="text-xl font-medium">Hire a <span class="font-bold">Dedicated Developer</span></p>
+    </div>
+    <div class="mt-4 md:mt-0 md:ml-4 lg:mt-0 lg:ml-4">
+      <button class="bg-pink-600 p-3 text-white rounded-lg w-32">Hire now</button>
+    </div>
+  </div>
+  <!-- Hire section end -->
+  <!-- developmet section start  -->
+  <div class="theme-bg w-full mt-9 grid grid-cols-1 gap-5 p-4  sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 service-background">
+
+    <div
+      class=" flex justify-center flex-col items-center gap-3 border-solid border-2 shadow-xl text-white p-8 rounded-lg theme-bg lg:h-60  lg:items-start lg:w-full"
+      style="background-color:#6C39B7">
+      <div>
+        <p class="font-bold text-2xl">Our development services</p>
+      </div>
+      <div>
+        <p class="text-center font-medium text-lg lg:text-left">
+          We believe in the transformative Development of digital technology and leverage our expertise to help clients
+          achieve their online goals and skyrocket their growth.
+        </p>
+      </div>
+      <div class="w-full">
+        <button class="font-medium">
+          Learn More
+        </button>
+      </div>
+    </div>
+
+    <div
+      class=" theme-bg card flex justify-center bg-blue-300 flex-col items-center gap-3 border-solid border-2 shadow-xl p-4 lg:h-60 lg:gap-0 lg:items-start lg:p-7 lg:justify-end"
+      >
+      <div class="w-36 p-5 lg:p-0 image-container">
+        <img src="development.png" alt="" class="w-full hover-image">
+      </div>
+      <div>
+        <p class="font-bold text-xl">Web Development</p>
+      </div>
+      <div class="flex gap-2">
+        <div class="border-r-4 p-2">
+          <p class="font-medium text-gray-700">PHP</p>
+        </div>
+        <div class="border-r-4 p-2">
+          <p class="font-medium text-gray-700">REACT</p>
+        </div>
+        <div class="border-r-4 p-2">
+          <p class="font-medium text-gray-700">JAVA</p>
+        </div>
+        <div class="p-2">
+          <p class="font-medium text-gray-700">DJANGO</p>
+        </div>
+      </div>
+      <div class="p-2 hidden hover-paragraph">
+        <p class="text-center font-medium lg:text-left">
+          Create a user-friendly and engaging website that reflects your brand and drives results. From custom web
+          design to CMS integration, we have the expertise to turn your vision into reality.
+        </p>
+      </div>
+    </div>
+  
+
+
+    <div
+  class="theme-bg card  flex justify-center flex-col bg-red-300 items-center gap-3 border-solid border-2 shadow-xl p-4 lg:h-60 lg:gap-0 lg:items-start lg:p-7 lg:justify-end"
+>
+  <div class="w-36 image-container">
+    <img src="ecommerce.png" alt="" class="w-full hover-image">
+  </div>
+  <div class="flex gap-2">
+    <div class="border-r-4 p-2">
+      <p class="font-medium text-gray-700">PHP</pclass=>
+    </div>
+    <div class="border-r-4 p-2">
+      <p class="font-medium text-gray-700">REACT</p>
+    </div>
+    <div class="border-r-4 p-2">
+      <p class="font-medium text-gray-700">SHOPIFY</p>
+    </div>
+    <div class="p-2">
+      <p class="font-medium text-gray-700">MAGENTO</p>
+    </div>
+  </div>
+  <div class="p-2 hidden hover-paragraph">
+    <p class="text-center font-medium lg:text-left">
+      Create a user-friendly and engaging website that reflects your brand and drives results. From custom web
+      design to CMS integration, we have the expertise to turn your vision into reality.
+    </p>
+  </div>
+</div>
+
+
+    <div
+      class="card theme-bg flex justify-center flex-col bg-pink-300 items-center gap-3 border-solid border-2 shadow-xl p-4 lg:h-60 lg:gap-0 lg:items-start lg:p-7 lg:justify-end"
+      >
+      <div class="w-36 p-2 image-container">
+        <img src="app.png" alt="" class="w-full hover-image">
+      </div>
+      <div class="flex gap-2">
+        <div class="border-r-4 p-2">
+          <p class="font-medium text-gray-700">PHP</p>
+        </div>
+        <div class="border-r-4 p-2">
+          <p class="font-medium text-gray-700">REACT</p>
+        </div>
+        <div class="border-r-4 p-2">
+          <p class="font-medium text-gray-700">JAVA</p>
+        </div>
+        <div class="p-2">
+          <p class="font-medium text-gray-700">DJANGO</p>
+        </div>
+      </div>
+      <div class="p-2 hidden hover-paragraph">
+        <p class="text-center font-medium lg:text-left">
+          Create a user-friendly and engaging website that reflects your brand and drives results. From custom web
+          design to CMS integration, we have the expertise to turn your vision into reality.
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="card theme-bg flex justify-center bg-green-300 flex-col items-center gap-3 border-solid border-2 shadow-xl p-4 lg:h-60 lg:gap-0 lg:items-start lg:p-7 lg:justify-end"
+      >
+      <div class="w-36 p-2 image-container">
+        <img src="tech.png" alt="" class="w-full hover-image">
+      </div>
+      <div class="flex gap-2">
+        <div class="border-r-4 p-2">
+          <p class="font-medium text-gray-700">PHP</p>
+        </div>
+        <div class="border-r-4 p-2">
+          <p class="font-medium text-gray-700">REACT</p>
+        </div>
+        <div class="border-r-4 p-2">
+          <p class="font-medium text-gray-700">JAVA</p>
+        </div>
+        <div class="p-2">
+          <p class="font-medium text-gray-700">DJANGO</p>
+        </div>
+      </div>
+      <div class="p-2 hidden hover-paragraph">
+        <p class="text-center font-medium lg:text-left">
+          Create a user-friendly and engaging website that reflects your brand and drives results. From custom web
+          design to CMS integration, we have the expertise to turn your vision into reality.
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="card theme-bg flex justify-center bg-yellow-300 flex-col items-center gap-3 border-solid border-2 shadow-xl p-4 lg:h-60 lg:gap-0 lg:items-start lg:p-7 lg:justify-end"
+      >
+      <div class="w-36 p-2 image-container">
+        <img src="seo.png" alt="" class="w-full hover-image">
+      </div>
+      <div class="flex gap-2">
+        <div class="border-r-4 p-2">
+          <p class="font-medium text-gray-700">PHP</p>
+        </div>
+        <div class="border-r-4 p-2">
+          <p class="font-medium text-gray-700">REACT</p>
+        </div>
+        <div class="border-r-4 p-2">
+          <p class="font-medium text-gray-700">JAVA</p>
+        </div>
+        <div class="p-2">
+          <p class="font-medium text-gray-700">DJANGO</p>
+        </div>
+      </div>
+      <div class="p-2 hidden hover-paragraph">
+        <p class="text-center font-medium lg:text-left">
+          Create a user-friendly and engaging website that reflects your brand and drives results. From custom web
+          design to CMS integration, we have the expertise to turn your vision into reality.
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- development section end hear -->
+  <!-- pricing card star -->
+  <div class="theme-bg bg-gray-100 flex flex-col items-center justify-center  p-3 ">
+
+    <div class="text-center mb-8">
+      <h2 class="text-red-500 text-sm font-semibold">OUR PRICING</h2>
+      <h1 class="text-3xl font-bold mt-2">Packages that are within your financial constraints</h1>
+    </div>
+    <div
+      class="theme-bg w-full overflow-hidden bg-gray-100 mt-6 p-4  grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <!-- Basic Plan -->
+      <div class="flex flex-col justify-between bg-slate-200 border-b-4 border-gray-400">
+        <div class="theme-bg border-b-4 p-2 border-gray-400 bg-gray-200">
+          <p class="font-bold text-xl">Basic</p>
+          <p class="font-medium text-lg">Great For Small Business</p>
+        </div>
+        <div class="flex justify-between gap-10 mt-2">
+          <div class="text-2xl font-bold text-purple-600">₹ 29,999</div>
+          <div class="w-24 p-2 flex flex-col items-end"
+            style="background-color: #007DFF; border-top-left-radius: 100%; border-bottom-left-radius: 100%;">
+            <div class="text-sm text-white font-semibold">10%</div>
+            <div class="text-sm text-white font-semibold line-through">₹ 33,332</div>
+
+          </div>
+
+        </div>
+
+        <div class="scroll-container h-44 overflow-scroll">
+          <ul class="mt-4 mb-6 text-left">
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Website Creation
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Domain
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Hosting
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Hosting
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Hosting
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Hosting
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Hosting
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Hosting
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Website Creation
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Website Creation
+            </li>
+            <!-- Add other list items here -->
+          </ul>
+        </div>
+
+        <div class="flex flex-col gap-3 justify-center items-center lg:flex-row lg:justify-between lg:p-3">
+          <div class="flex justify-center items-center">
+            <button class="bg-purple-600 text-white py-2 px-4 rounded-full">Order Now</button>
+          </div>
+          <div class="flex justify-center  mb-9 items-center lg:gap-3">
+            <div>
+              <i class="fas fa-comment text-green-500 text-2xl"></i>
+            </div>
+            <div class="flex justify-center items-center flex-col">
+              <p>
+                Click here to
+              </p>
+              <p class="text-lg font-bold">
+                Chat Now
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="theme-bg flex flex-col justify-center bg-gray-200 items-center mt-5
+        rounded-lg p-1">
+          <div>
+            <p>Call US: +91 8130543714</p>
+          </div>
+          <div>
+            <p>
+              Need Support
+            </p>
+          </div>
+        </div>
+
+      </div>
+      <!-- Professional Plan -->
+      <div class="flex flex-col justify-between border-b-4 border-gray-400">
+        <div class="theme-bg bg-gray-200 border-b-4 p-2 border-gray-400">
+          <p class="font-bold text-xl">Basic</p>
+          <p class="font-medium text-lg">Great For Small Business</p>
+        </div>
+        <div class="flex justify-between gap-10 mt-2">
+          <div class="text-2xl font-bold text-purple-600">₹ 29,999</div>
+          <div class="w-24 p-2 flex flex-col items-end"
+            style="background-color: #007DFF; border-top-left-radius: 100%; border-bottom-left-radius: 100%;">
+            <div class="text-sm text-white font-semibold">10%</div>
+            <div class="text-sm text-white font-semibold line-through">₹ 33,332</div>
+
+          </div>
+
+        </div>
+        <div class="scroll-container h-44 overflow-scroll">
+          <ul class="mt-4 mb-6 text-left">
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Website Creation
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Domain
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Hosting
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Hosting
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Hosting
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Hosting
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Hosting
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Hosting
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Website Creation
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Website Creation
+            </li>
+            <!-- Add other list items here -->
+          </ul>
+        </div>
+        <div class="flex flex-col gap-3 justify-center items-center lg:flex-row lg:justify-between lg:p-3">
+          <div class="flex justify-center items-center">
+            <button class="bg-purple-600 text-white py-2 px-4 rounded-full">Order Now</button>
+          </div>
+          <div class="flex justify-center  mb-9 items-center lg:gap-3">
+            <div>
+              <i class="fas fa-comment text-green-500 text-2xl"></i>
+            </div>
+            <div class="flex justify-center items-center flex-col">
+              <p>
+                Click here to
+              </p>
+              <p class="text-lg font-bold">
+                Chat Now
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="theme-bg bg-gray-200 flex flex-col justify-center items-center mt-5
+       rounded-lg p-1">
+          <div>
+            <p>Call US: +91 8130543714</p>
+          </div>
+          <div>
+            <p>
+              Need Support
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- primium paln -->
+      <div class="flex flex-col justify-between border-b-4 border-gray-400">
+        <div class="theme-bg border-b-4 p-2 border-gray-400 bg-gray-200">
+          <p class="font-bold text-xl">Basic</p>
+          <p class="font-medium text-lg">Great For Small Business</p>
+        </div>
+        <div class="flex justify-between gap-10 mt-2">
+          <div class="text-2xl font-bold text-purple-600">₹ 29,999</div>
+          <div class="w-24 p-2 flex flex-col items-end"
+            style="background-color: #007DFF; border-top-left-radius: 100%; border-bottom-left-radius: 100%;">
+            <div class="text-sm text-white font-semibold">10%</div>
+            <div class="text-sm text-white font-semibold line-through">₹ 33,332</div>
+
+          </div>
+
+        </div>
+        <div class="scroll-container h-44 overflow-scroll">
+          <ul class="mt-4 mb-6 text-left">
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Website Creation
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Domain
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Hosting
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Hosting
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Hosting
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Hosting
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Hosting
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Hosting
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Website Creation
+            </li>
+            <li class="flex items-center mb-2">
+              <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Website Creation
+            </li>
+            <!-- Add other list items here -->
+          </ul>
+        </div>
+        <div class="flex flex-col gap-3 justify-center items-center lg:flex-row lg:justify-between lg:p-3">
+          <div class="flex justify-center items-center">
+            <button class="bg-purple-600 text-white py-2 px-4 rounded-full">Order Now</button>
+          </div>
+          <div class="flex justify-center  mb-9 items-center lg:gap-3">
+            <div>
+              <i class="fas fa-comment text-green-500 text-2xl"></i>
+            </div>
+            <div class="flex justify-center items-center flex-col">
+              <p>
+                Click here to
+              </p>
+              <p class="text-lg font-bold">
+                Chat Now
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="theme-bg flex flex-col justify-center bg-gray-200 items-center mt-5
+     rounded-lg p-1">
+          <div>
+            <p>Call US: +91 8130543714</p>
+          </div>
+          <div>
+            <p>
+              Need Support
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+  <!-- pricing card end -->
+  <!-- bonus container start -->
+  <div class="theme-bg bg-blue-200">
+    <div class="p-4 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6 max-w-6xl mx-auto">
+
+      <!-- Card 1 -->
+      <div class="flex gap-9">
+        <div class="w-28 p-4"
+          style="background-color:white;border-bottom-left-radius: 50%; border-top-right-radius: 50%;">
+          <img src="startup.png" alt="startup">
+        </div>
+        <div class="flex flex-col gap-3 justify-center">
+          <div>
+            <p class="font-bold text-4xl">1.5+</p>
+          </div>
+          <div>
+            <p class="font-medium text-lg">Year In Business</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="flex gap-9">
+        <div class="w-28 p-4"
+          style="background-color:white;border-bottom-left-radius: 50%; border-top-right-radius: 50%;">
+          <img src="startup.png" alt="startup">
+        </div>
+        <div class="flex flex-col gap-3 justify-center">
+          <div>
+            <p class="font-bold text-4xl">20+</p>
+          </div>
+          <div>
+            <p class="font-medium text-lg">Team Members</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="flex gap-9">
+        <div class="w-28 p-4"
+          style="background-color:white;border-bottom-left-radius: 50%; border-top-right-radius: 50%;">
+          <img src="startup.png" alt="startup">
+        </div>
+        <div class="flex flex-col gap-3 justify-center">
+          <div>
+            <p class="font-bold text-4xl">200+</p>
+          </div>
+          <div>
+            <p class="font-medium text-lg">Happy Clients</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="flex gap-9">
+        <div class="w-28 p-4"
+          style="background-color:white;border-bottom-left-radius: 50%; border-top-right-radius: 50%;">
+          <img src="startup.png" alt="startup">
+        </div>
+        <div class="flex flex-col gap-3 justify-center">
+          <div>
+            <p class="font-bold text-4xl">500+</p>
+          </div>
+          <div>
+            <p class="font-medium text-lg">Projects Done</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="flex gap-9">
+        <div class="w-28 p-4"
+          style="background-color:white;border-bottom-left-radius: 50%; border-top-right-radius: 50%;">
+          <img src="startup.png" alt="startup">
+        </div>
+        <div class="flex flex-col gap-3 justify-center">
+          <div>
+            <p class="font-bold text-4xl">95k</p>
+          </div>
+          <div>
+            <p class="font-medium text-lg">Hours Worked</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="flex gap-9">
+        <div class="w-28 p-4"
+          style="background-color:white;border-bottom-left-radius: 50%; border-top-right-radius: 50%;">
+          <img src="startup.png" alt="startup">
+        </div>
+        <div class="flex flex-col gap-3 justify-center">
+          <div>
+            <p class="font-bold text-4xl">24/7</p>
+          </div>
+          <div>
+            <p class="font-medium text-lg">Support Available</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bonus container end -->
+  <!-- work container start -->
+
+  <div class=" w-full">
+    <div class="flex justify-center flex-col gap-3 items-center p-3">
+      <div>
+        <p class="text-red-700 font-bold text-lg">OUR WORK</p>
+      </div>
+      <div>
+        <p class="font-medium text-lg">Our Latest Creative Work</p>
+      </div>
+    </div>
+
+    <div class="p-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 sm:flex  lg:flex ">
+      <div class="p-2 sm:w-full md:w-full lg:w-full">
+        <div class="border-solid border-2  shadow-xl rounded-lg lg:w-full">
+          <img src="azmara-ban.webp" alt="" class="lg:w-full">
+        </div>
+        <div>
+
+          <div class="flex flex-col gap-2 mt-2">
+            <div>
+              <p class="font-bold text-lg">Ecommerce Development</p>
+            </div>
+            <div>
+              <p>Web Application</p>
+            </div>
+          </div>
+
+          <div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="p-2 w-full h-full sm:h-1/2 md:w-3/4 md:h-1/2 flex flex-col  md:flex-col lg:h-1/2 lg:w-3/4 lg:flex">
+        <div class="border-solid border-2  shadow-xl rounded-lg w-full   sm:w-full md:w-full">
+          <img src="mobile-azmara.webp" alt="" class=" md:w-full lg:w-full h-full">
+        </div>
+        <div class="flex flex-col justify-center md:w-1/2  md:">
+          <div>
+            <p class="font-bold text-lg">Creative App</p>
+          </div>
+          <div>
+            <p>ios, Android</p>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+
+  </div>
+
+  <!-- work container end  -->
+  <!-- clients container -->
+  <div class="theme-bg flex justify-center bg-pink-200 flex-col gap-6 p-3">
+    <div class="mt-4 flex flex-col gap-3 justify-center items-center">
+      <div>
+        <p class="font-medium text-red-600">OUR HAPPY CUSTOMERS</p>
+      </div>
+      <div>
+        <p class="font-bold text-4xl"> Some of our Clients</p>
+      </div>
+    </div>
+
+
+    <div class="logo">
+      <div class="logos-slide">
+
+        <img src="roofing-logo (1).png" alt="">
+
+        <img src="aramaistic-logo.png" alt="">
+        <img src="roofing-logo (1).png" alt="">
+        <img src="jewarland-logo.png" alt="">
+        <img src="cute-logo.png" alt="">
+        <img src="roofing-logo (1).png" alt="">
+        <img src="sharmalabels-logo.png" alt="">
+        <img src="roofing-logo (1).png" alt="">
+
+        <img src="aramaistic-logo.png" alt="">
+        <img src="roofing-logo (1).png" alt="">
+        <img src="jewarland-logo.png" alt="">
+        <img src="cute-logo.png" alt="">
+        <img src="roofing-logo (1).png" alt="">
+        <img src="sharmalabels-logo.png" alt="">
+
+
+
+
+
+      </div>
+
+    </div>
+
+    <div class="flex flex-col justify-center items-center gap-4">
+      <div>
+        <p class="text-xl">
+          <span class="font-medium">We</span> <span class="font-extrabold">Promise. </span><span
+            class="font-medium">We</span> <span class="font-extrabold">Deliver</span>
+        </p>
+      </div>
+      <div>
+        <button class="p-3 rounded-full text-white " style="background: rgb(243,44,145);
+           background: linear-gradient(89deg, rgba(243,44,145,1) 0%, rgba(191,44,199,1) 98%);">Let's Work
+          Togrther</button>
+      </div>
+    </div>
+
+
+
+
+  </div>
+
+  <!-- clints container end -->
+  <!-- industries contianer start -->
+  <div class="theme-bg flex justify-center items-center  flex-col p-3 lg:flex-row ">
+
+    <div class="flex justify-center items-center flex-col gap-3 mt-3 lg:w-1/2 lg:items-start lg:p-8">
+      <div>
+        <p class="text-lg font-medium text-red-600">INDUSTRIES WE WORK FOR</p>
+      </div>
+      <div>
+        <P class="font-bold text-2xl ">Helping Business in All Domains</P>
+      </div>
+      <div class="p-2">
+        <p class="text-center font-medium lg:text-left">From cutting-edge startups to established corporations, we
+          empower businesses
+          in all domains with custom-tailored digital solutions. We understand the unique challenges and opportunities
+          each industry faces and leverage our comprehensive knowledge to deliver results that matter.</p>
+      </div>
+
+    </div>
+
+    <div class="w-full grid grid-cols-2 gap-4 p-2 lg:grid-cols-4">
+
+      <div class="flex flex-col justify-center items-center gap-3 p-4 shadow-xl"
+        style="background-color:#70E4E8; border-bottom-left-radius:33%;border-top-right-radius:33%;">
+        <div>
+          <img src="icon-1.png" alt="">
+        </div>
+        <div>
+          <p>Social Networking</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col justify-center items-center gap-3 p-4 shadow-xl"
+        style="background-color: #F5EB92;border-bottom-left-radius:33%;border-top-right-radius:33%;">
+        <div>
+          <img src="icon-1.png" alt="">
+        </div>
+        <div>
+          <p>Social Networking</p>
+        </div>
+      </div>
+
+
+      <div class="flex flex-col justify-center items-center gap-3 p-4 shadow-xl"
+        style="background-color: #A3FFE2;border-bottom-left-radius:33%;border-top-right-radius:33%;">
+        <div>
+          <img src="icon-1.png" alt="">
+        </div>
+        <div>
+          <p>Social Networking</p>
+        </div>
+      </div>
+
+
+      <div class="flex flex-col justify-center items-center gap-3 p-4 shadow-xl"
+        style="background-color: #FFBC7A;border-bottom-left-radius:33%;border-top-right-radius:33%;">
+        <div>
+          <img src="icon-1.png" alt="">
+        </div>
+        <div>
+          <p>Social Networking</p>
+        </div>
+      </div>
+
+
+      <div class="flex flex-col justify-center items-center gap-3 p-4 shadow-xl"
+        style="background-color: #E3FF8E;border-bottom-left-radius:33%;border-top-right-radius:33%;">
+        <div>
+          <img src="icon-1.png" alt="">
+        </div>
+        <div>
+          <p>Social Networking</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col justify-center items-center gap-3 p-4 shadow-xl"
+        style="background-color: #FFA0C6;border-bottom-left-radius:33%;border-top-right-radius:33%;">
+        <div>
+          <img src="icon-1.png" alt="">
+        </div>
+        <div>
+          <p>Social Networking</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col justify-center items-center gap-3 p-4 shadow-xl"
+        style="background-color: #F3A6FF;border-bottom-left-radius:33%;border-top-right-radius:33%;">
+        <div>
+          <img src="icon-1.png" alt="">
+        </div>
+        <div>
+          <p>Social Networking</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col justify-center items-center gap-3 p-4 shadow-xl"
+        style="background-color:#F3A6FF;border-bottom-left-radius:33%;border-top-right-radius:33%;">
+        <div>
+          <img src="icon-1.png" alt="">
+        </div>
+        <div>
+          <p>Social Networking</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col justify-center items-center gap-3 p-4 shadow-xl"
+        style="background-color: #97FFAF;border-bottom-left-radius:33%;border-top-right-radius:33%;">
+        <div>
+          <img src="icon-1.png" alt="">
+        </div>
+        <div>
+          <p>Social Networking</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col justify-center items-center gap-3 p-4 shadow-xl"
+        style="background-color: #6CFFFA;border-bottom-left-radius:33%;border-top-right-radius:33%;">
+        <div>
+          <img src="icon-1.png" alt="">
+        </div>
+        <div>
+          <p>Social Networking</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col justify-center items-center gap-3 p-4 shadow-xl"
+        style="background-color: #77BAFF;border-bottom-left-radius:33%;border-top-right-radius:33%;">
+        <div>
+          <img src="icon-1.png" alt="">
+        </div>
+        <div>
+          <p>Social Networking</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col justify-center items-center gap-3 p-4 shadow-xl"
+        style="background-color:#FFEFD4;border-bottom-left-radius:33%;border-top-right-radius:33%;">
+        <div>
+          <img src="icon-1.png" alt="">
+        </div>
+        <div>
+          <p>Social Networking</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Industries container ends -->
+  <!-- Contact container start  -->
+  <div class="theme-bg w-full bg-blue-50 p-7 lg:p-7">
+    <div class="theme-bg w-full  flex flex-col justify-center items-center bg-cyan-200 mt-6 shadow-2xl p-5 lg:flex lg:flex-row "
+      >
+      <div class="flex flex-col items-center  mt-9 w-full gap-5 p-4">
+        <div>
+          <p class="font-medium text-xl text-red-600">CONTACT NOW</p>
+        </div>
+        <div>
+          <p class="font-bold text-2xl text-center">Have Question? Write a Message</p>
+        </div>
+
+        <div class="w-full flex flex-col  md:flex md:flex-row gap-3">
+          <div class="border-b-4 w-full shadow-xl  md:w-1/2">
+            <input class="theme-bg w-full p-4 md:w-full md:h-full" type="text" placeholder="Full Name">
+          </div>
+          <div class="border-b-4 w-full shadow-xl  md:w-1/2">
+            <input class="theme-bg w-full p-4 md:w-full md:h-full" type="email" placeholder="email">
+          </div>
+        </div>
+
+        <div class="w-full flex flex-col md:flex md:flex-row gap-3">
+          <div class="border-b-4 w-full shadow-xl md:w-1/2">
+            <input class="theme-bg w-full p-4 md:w-full md:h-full" type="text" placeholder="phone number">
+          </div>
+
+          <div class="border-b-4 w-full shadow-xl  md:w-1/2">
+            <input class="theme-bg w-full p-4 md:w-full md:h-full" type="text" placeholder="Subject">
+          </div>
+
+        </div>
+
+
+
+        <div class="border-b-4 w-full shadow-xl">
+          <textarea class="theme-bg w-full p-4" id="message" name="message" rows="4" cols="50"
+            placeholder="Enter your message here..."></textarea>
+
+          </textarea>
+
+        </div>
+
+        <div class="w-full flex justify-start items-center gap-2">
+          <input class="w-8 h-8 p-4" type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+          <label class="text-lg" for="vehicle1"> I agree to the <span class="font-medium">Terms & Conditions</span> of
+            Business Name</label>
+        </div>
+
+        <div class="w-full flex justify-center items-center ">
+          <button class="w-full p-5 rounded-full font-medium text-white text-xl" style=" background: rgb(255,169,133);
+          background: linear-gradient(89deg, rgba(255,169,133,1) 0%, rgba(255,82,138,1) 98%);;">Sumbmit<i
+              class="fa-solid fa-angle-right ml-3"></i></button>
+        </div>
+
+        <div class="w-full flex  justify-center items-center">
+          <i class="fa-solid fa-lock"></i>
+          <p class="ml-3">We hate spam, and we respect your privacy</p>
+        </div>
+
+
+
+
+
+      </div>
+
+      <div class="w-full flex flex-col justify-center items-center">
+        <div class="w-full p-2">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3561.6424794830746!2d80.9031072!3d26.787664099999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfc1aa0a7f043%3A0x5692fe584d1a7e8c!2sSmart%20Web%20Arts%20-%20Low%20Cost%20Website%20Developer%20%7C%20Best%20App%20Development%20Company%20in%20Lucknow!5e0!3m2!1sen!2sin!4v1717140219419!5m2!1sen!2sin"
+            width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- contact container ends -->
+
+  <!-- footer conatainer start hear -->
+  <div class="w-full">
+    <div class="w-full flex flex-col
+      md:w-full
+      lg:w-full lg:flex-row lg:justify-center items-center p-3">
+
+      <div class="w-full flex flex-col sm:flex sm:flex-row justify-between md:w-full  lg:w-full">
+        <div class="p-2 flex flex-col
+          md:w-1/2 sm:w-1/2 lg:w-full">
+          <div class="w-full lg:w-1/2">
+            <img class="w-full" src="white-logo.png" alt="">
+          </div>
+          <div class="w-full p-2 ">
+            <p class="text-left">Digi India Solutions is a leading digital marketing company specializes in offering a
+              broad range of digital marketing services to assist businesses of all sizes in achieving their online
+              marketing objectives.</p>
+          </div>
+        </div>
+
+        <div class="p-2 flex flex-col md:w-1/2 sm:w-1/2 lg:w-1/2">
+          <div>
+            <p class="font-bold text-xl">Quick Links</p>
+          </div>
+          <div>
+            <ul>
+              <li>
+                <a href="">Home</a>
+              </li>
+              <li>
+                <a href="">About us</a>
+              </li>
+              <li>
+                <a href="">Services</a>
+              </li>
+              <li>
+                <a href="">Privacy Policy</a>
+              </li>
+              <li>
+                <a href="">Blog</a>
+              </li>
+              <li>
+                <a href="">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col w-full 
+        md:w-full sm:flex sm:flex-row justify-between lg:w-full">
+        <div class="p-2 flex flex-col sm:w-1/2 md:w-1/2 lg:1/2">
+          <div>
+            <p class="font-bold text-xl">Service</p>
+          </div>
+          <div>
+            <ul>
+              <li>
+                <a href="">Website Creation</a>
+              </li>
+              <li>
+                <a href="">Software Development</a>
+              </li>
+              <li>
+                <a href="">Application Development</a>
+              </li>
+              <li>
+                <a href="">Google services</a>
+              </li>
+              <li>
+                <a href="">SEO</a>
+              </li>
+              <li>
+                <a href="">Social Media Promotion</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="flex flex-col p-2 sm:w-1/2 md:w-1/2 lg:w-1/2">
+          <div>
+            <p class="font-bold text-lg">Contact Us</p>
+          </div>
+          <div class="w-full">
+            <ul>
+              <li>
+                <i class="fa-solid fa-envelope"></i>
+                <a href="">Email
+                  <p>ak949138@gmail.com</p>
+                </a>
+              </li>
+
+              <li>
+                <i class="fa-solid fa-phone"></i>
+                <a href="">Phone
+                  <p>+91 8130543714</p>
+                </a>
+
+              </li>
+
+              <li>
+                <i class="fa-solid fa-location-dot"></i>
+                <a href="">Address
+                  <p>Shop No.12, Sec 24, Pocket-26, Rohini,New Delhi 110085</p>
+                </a>
+              </li>
+
+
+
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+    </div>
+
+    <div class="w-full flex flex-col gap-4 border-t-4 mt-5 p-3">
+      <div class="w-full flex flex-row gap-4 justify-center items-center">
+        <div>
+          <i class="fa-brands fa-facebook"></i>
+        </div>
+        <div>
+          <i class="fa-brands fa-instagram"></i>
+        </div>
+        <div>
+          <i class="fa-brands fa-linkedin"></i>
+        </div>
+        <div>
+          <i class="fa-brands fa-youtube"></i>
+        </div>
+      </div>
+      <div class="w-full flex justify-center items-center">
+        <p class="text-center">
+          © 2022-2023. All Rights Reserved By DIGI India Solutions
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- <script>
+    function myFunction() {
+      console.log("clicked");
+      var element = document.body; // Correct the typo here
+      element.classList.toggle("dark-mode");
+    }
+  </script> -->
+
+</body>
+<script src="script.js"></script>
+
+</html>

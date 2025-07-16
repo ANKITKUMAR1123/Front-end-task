@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.display-none{
+  @apply hidden;
+}
+
+@keyframes slide {
+  from{
+    transform: translate(0);
+  }
+  to{
+    transform: translateX(-100%);
+  }
+}
+.logo{
+  overflow: hidden;
+  padding:50px 0;
+  white-space: nowrap;
+  position: relative;
+}
+
+.logo:before{
+  position: absolute;
+  
+}
+
+.logo:hover .logos-slide{
+  animation-play-state: paused;
+}
+.logos-slide{
+
+  display: flex;
+  /* display: inline-block; */
+  animation:20s slide infinite linear;
+}
+.logos-slide img {
+  height: 50px;
+  margin:0 40px;
+}
+
+/* .card-web{
+  background-color: (243,245,255);
+} */
+
+
+.home-background{
+  background: rgb(205,236,255);
+  background: linear-gradient(183deg, rgba(205,236,255,1) 35%, rgba(241,238,255,1) 100%);
+}
+
+.service-background{
+  background:#D7F0FD;
+}
