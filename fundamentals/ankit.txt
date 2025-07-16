@@ -1,0 +1,5 @@
+amit 	24	amit12@gmail.com
+ankit kumar	22	ankit@gmail.com
+ankit kuamr 	23	ankit@123gmail.com
+amit kumar 	24	amit123@gmail.com
+kuldeep nath		kuldeeep@gmail.com
